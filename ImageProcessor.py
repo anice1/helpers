@@ -16,7 +16,7 @@ class ImageProcessor:
         self.img = mpimg.imread(img_path)
         return self.img
     
-    def process_image(self, img_folder):
+    def process_images(self, img_folder):
         """Processes image required for feeding into a neural network
 
         Args:
@@ -46,13 +46,15 @@ class ImageProcessor:
                     next
             return image_data_array, class_name
         
-    def random_images(self, parent_dir, target_class):
+    def random_images(self, parent_dir, target_class, binarify=False):
         target_folder = parent_dir+target_class
         image = random.sample(os.listdir(target_folder))
-        print(image)
+        plt.figure(figsize=(10,7))
+        image = plt.imread(image)
+        plt.imshow(image,cmap=plt.cm.binary if binarify=True)
         
-    def improve_text_image_data(path, thresh, im_bw):
-        """Improves Text Image data by trying to improve blury or non clear image
+    def improve_image(path, thresh, im_bw):
+        """Improves Image data by trying to improve blury or non clear image
 
         Args:
             path (string): The path to the image file
