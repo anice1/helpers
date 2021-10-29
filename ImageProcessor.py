@@ -67,8 +67,5 @@ class ImageProcessor:
         gray_scale = cv2.bitwise_not(gray_scale)
         thresh,im_bw = cv2.threshold(gray_scale,thresh,im_bw, cv2.THRESH_BINARY)
         plt.imshow(im_bw)
-        
-
-impr = ImageProcessor()
-impr.process_image('../Datasets/Text Recognition/train_v2')    
+        plt.show()
                 
