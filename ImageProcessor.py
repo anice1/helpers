@@ -5,6 +5,7 @@ import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import random
 import pdf2image as p2i
+import requests
 
 class ImageProcessor:
     def __init__(self):
@@ -51,10 +52,10 @@ class ImageProcessor:
         image = random.sample(os.listdir(target_folder))
         plt.figure(figsize=(10,7))
         image = plt.imread(image)
-        plt.imshow(image,cmap=plt.cm.binary if binarify=True)
+        plt.imshow(image,cmap=plt.cm.binary)
         
     def improve_image(path, thresh, im_bw):
-        """Improves Image data by trying to improve blury or non clear image
+        """Improves blury or non clear image
 
         Args:
             path (string): The path to the image file
@@ -68,4 +69,14 @@ class ImageProcessor:
         thresh,im_bw = cv2.threshold(gray_scale,thresh,im_bw, cv2.THRESH_BINARY)
         plt.imshow(im_bw)
         plt.show()
-                
+
+    def generate_random_images(num:int, save_path:str):
+        url = "https://picsum.photo/200/200/?random"
+        for i in range(num):
+            response = requests.get(url)
+            if response.status_code == 200:
+                filename = f'img_{i}.jpg'
+                file_path = os.path.join(save_path, filename)
+                with open(file_path, 'wb') as f:
+                    print("saving: ", filename)
+                    f.write(response.content)
