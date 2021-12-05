@@ -14,7 +14,7 @@ def load_image( img_path):
     img = mpimg.imread(img_path)
     return img
 
-def process_images( img_folder):
+def process_images(img_folder):
     """Processes image required for feeding into a neural network
 
     Args:
@@ -42,7 +42,7 @@ def process_images( img_folder):
                 class_name.append(directory)
             else:
                 next
-        return image_data_array, class_name
+    return image_data_array, class_name
     
 def random_images( parent_dir, target_class, binarify=False):
     target_folder = parent_dir+target_class
