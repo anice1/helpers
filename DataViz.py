@@ -86,17 +86,37 @@ class DataViz:
         """
         pass
     
-    def plot_history(history):
-        """Plot the Learning history of your model
+    def plot_history(self, history):
+        """
+        Returns a plots of model learning history object
 
         Args:
-            history (list): The Learning history variable assigned during (history = model.fit())
-
+            history: Model's learning history object
+        
         Returns:
-            matplotlib object: Returns a matplotlib plot
+            A plot of of model learning history
         """
-        return pd.DataFrame(history.history).plot(figsize=(10, 7), xlabel='epochs')
+
+        train_loss = history.history['loss']
+        val_loss = history.history['val_loss']
+
+        train_accuracy = history.history['accuracy']
+        val_accuracy = history.history['val_accuracy']
+
+        # Plot the histories
+        plt.plot(train_loss, label="Train Loss")
+        plt.plot(val_loss, label="Val Loss")
+        plt.xlabel('Epochs')
+        plt.legend()
+
+        # Plot the accuracy
+        plt.figure()
+        plt.plot(train_accuracy, label="Train Accuracy")
+        plt.plot(val_accuracy, label="Val Accuracy")
+        plt.xlabel('Epochs')
+        plt.legend()
     
+
     def plot_lr_vs_loss(self,learning_rate, history):
         """
         Plot a semiglogx chart showing the model's learning rate vs. loss performance
