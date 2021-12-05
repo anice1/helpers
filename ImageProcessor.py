@@ -54,7 +54,7 @@ class ImageProcessor:
         image = plt.imread(image)
         plt.imshow(image,cmap=plt.cm.binary)
         
-    def improve_image(path, thresh, im_bw):
+    def improve_image(self, path, thresh, im_bw):
         """Improves blury or non clear image
 
         Args:
@@ -70,7 +70,13 @@ class ImageProcessor:
         plt.imshow(im_bw)
         plt.show()
 
-    def generate_random_images(num:int, save_path:str):
+    def generate_random_images(self, num:int, save_path:str):
+        """Generates and downloads random images from https://picsum.photo/200/200/?random
+
+        Args:
+            num (int): Number of images you wish to download
+            save_path (str): The path to which the images will be saved
+        """
         url = "https://picsum.photo/200/200/?random"
         for i in range(num):
             response = requests.get(url)
